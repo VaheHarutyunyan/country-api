@@ -1,0 +1,35 @@
+:root {
+  --background-color: #fff;
+  --text-color: #121416d8;
+  --link-color: #543fd7;
+}
+
+body {
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
+body[data-theme="light"] {
+  --background-color: #fff;
+  --text-color: #121416d8;
+  --link-color: #543fd7;
+}
+
+body[data-theme="dark"] {
+  --background-color: #212a2e;
+  --text-color: #f7f8f8;
+  --link-color: #828fff;
+}
+button {
+  border: 1px solid black;
+  background: none;
+  border-radius: 15px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+input[type="search"] {
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid #020202;
+}
