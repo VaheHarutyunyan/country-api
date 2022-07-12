@@ -2,6 +2,7 @@
   --background-color: #fff;
   --text-color: #121416d8;
   --link-color: #543fd7;
+  --border-color: #121416d8;
 }
 
 body {
@@ -13,12 +14,14 @@ body[data-theme="light"] {
   --background-color: #fff;
   --text-color: #121416d8;
   --link-color: #543fd7;
+  --border-color: #121416d8;
 }
 
 body[data-theme="dark"] {
   --background-color: #212a2e;
   --text-color: #f7f8f8;
   --link-color: #828fff;
+  --border-color: #f7f8f8;
 }
 button {
   border: 1px solid black;

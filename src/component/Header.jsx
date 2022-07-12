@@ -11,7 +11,6 @@ const Header = () => {
   };
 
   useEffect(() => {
-    console.log("body attribute", document.body);
     document.body.setAttribute("data-theme", theme);
   }, [theme]);
 
