@@ -11,7 +11,7 @@ function Card({ img, name, info, onClick }) {
         <ul>
           {info.map((item) => (
             <li key={item.title}>
-              <b>{item.title}</b> <i>{item.description}</i>
+              <span>{item.title}</span>: <b>{item.description}</b>
             </li>
           ))}
         </ul>

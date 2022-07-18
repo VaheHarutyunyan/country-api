@@ -1,13 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap");
+
 :root {
   --background-color: #fff;
   --text-color: #121416d8;
   --link-color: #543fd7;
   --border-color: #121416d8;
+  font-family: "Open Sans", sans-serif;
 }
 
 body {
   background: var(--background-color);
   color: var(--text-color);
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
 }
 
 body[data-theme="light"] {

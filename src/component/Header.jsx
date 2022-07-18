@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { clearControls } from "../store/controls/controls-action";
 import { setTheme } from "../store/theme/theme-action";
 
 const Header = () => {
@@ -8,6 +10,9 @@ const Header = () => {
   const theme = useSelector((state) => state.theme.type);
   const switchTheme = () => {
     dispatch(setTheme(theme === "light" ? "dark" : "light"));
+  };
+  const cleanUp = () => {
+    dispatch(clearControls());
   };
 
   useEffect(() => {
@@ -18,7 +23,11 @@ const Header = () => {
     <div className="header">
       <div className="row">
         <div className="col">
-          <button className="btn-world">Where is the world</button>
+          <NavLink to="/">
+            <button className="btn-world" onClick={cleanUp}>
+              Where is the world
+            </button>
+          </NavLink>
         </div>
         <div className="col">
           <button className="btn-theme" onClick={switchTheme}>

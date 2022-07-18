@@ -2,20 +2,26 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import ReactSelect from "react-select";
 import Card from "../component/Card";
+import Search from "../component/Search";
+import SelectRegion from "../component/SelectRegion";
+import { selectControls } from "../store/controls/controls-select";
 import { loadCountry } from "../store/countries/countries-action";
 import {
-  getAllCountries,
   getCountries,
+  getVisibleCountries,
 } from "../store/countries/countries-select";
 
 const HomePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const countries = useSelector(getAllCountries);
+  const { search, region } = useSelector(selectControls);
+  const countries = useSelector((state) =>
+    getVisibleCountries(state, { search, region })
+  );
   const { status, error, qty } = useSelector(getCountries);
-  console.log(countries, status, error);
+  console.log(search);
+
   useEffect(() => {
     if (!qty) {
       dispatch(loadCountry());
@@ -25,11 +31,19 @@ const HomePage = () => {
     <div className="homepage">
       <div className="row">
         <div className="col">
-          <input type="search" placeholder="Search" />
+          <Search />
         </div>
         <div className="col">
-          <ReactSelect placeholder="Choose country" />
+          <SelectRegion />
         </div>
+      </div>
+      <div>
+        <p>
+          Status: <b>{status}</b>
+        </p>
+        <p>
+          Error: <b>{error}</b>
+        </p>
       </div>
 
       <div className="row row-country">
@@ -44,7 +58,7 @@ const HomePage = () => {
               },
               {
                 title: "Region",
-                description: country.region,
+                description: country.region.toUpperCase,
               },
               {
                 title: "Capital",
