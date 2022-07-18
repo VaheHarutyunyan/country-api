@@ -6,22 +6,22 @@ export const setLoading = () => ({
   type: SET_LOADING,
 });
 
-export const setError = (error) => ({
+export const setError = error => ({
   type: SET_ERROR,
   payload: error,
 });
 
-export const setCountry = (country) => ({
+export const setCountry = country => ({
   type: SET_COUNTRY,
   payload: country,
 });
 
 export const loadCountryByName =
-  (name) =>
-  (dispatch, _, { client, api }) => {
+  name =>
+  (dispatch, _, {client, api}) => {
     dispatch(setLoading());
     client
       .get(api.searchByCountry(name))
-      .then(({ data }) => dispatch(setCountry(data[0])))
-      .catch((error) => dispatch(setError(error.message)));
+      .then(({data}) => dispatch(setCountry(data[0])))
+      .catch(error => dispatch(setError(error.message)));
   };

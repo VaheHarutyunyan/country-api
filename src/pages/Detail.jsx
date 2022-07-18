@@ -1,51 +1,58 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate, useParams} from "react-router-dom";
 import CardDetail from "../component/CardDetail";
-import { loadCountryByName } from "../store/details/details-action";
-import { selectDetails } from "../store/details/details-select";
+import {loadCountryByName} from "../store/details/details-action";
+import {selectDetails} from "../store/details/details-select";
 
 const Detail = () => {
-  const { name } = useParams();
+  const {name} = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { currentCountry, error, status } = useSelector(selectDetails);
+  const {currentCountry, error, status} = useSelector(selectDetails);
 
   useEffect(() => {
     dispatch(loadCountryByName(name));
   }, [dispatch, name]);
-
-  console.log(currentCountry, error, status);
   return (
     <div className="details">
       <div className="row">
         <button onClick={() => navigate(-1)}>Back</button>
       </div>
       <div className="row">
-        <div className="card-detail">
-          {currentCountry.map((d) => {
+        <p>Status: {status}</p>
+        {error && <p>Error: {error}</p>}
+      </div>
+      <div className="row">
+        {status === "loading" ? (
+          <h1>Loading..</h1>
+        ) : (
+          <div className="card-detail">
+            {currentCountry && <CardDetail {...currentCountry} />}
+            {/* {currentCountry && currentCountry?.map((d) => {
             const detailsInfo = {
-              name: d.name,
-              img: d.flags.png,
+              name: d?.name,
+              img: d?.flags?.png,
               detail: [
-                { title: "Native Name", value: d.name },
+                { title: "Native Name", value: d?.name },
                 {
                   title: "Population",
-                  value: d.population,
+                  value: d?.population,
                 },
-                { title: "Region", value: d.region },
-                { title: "Sub. region", value: d.subregion },
-                { title: "Capital", value: d.capital },
-                { title: "Top Level Domain", value: d.topLevelDomain },
+                { title: "Region", value: d?.region },
+                { title: "Sub. region", value: d?.subregion },
+                { title: "Capital", value: d?.capital },
+                { title: "Top Level Domain", value: d?.topLevelDomain },
                 { title: "Currencies", value: d?.currencies?.name },
-                { title: "Top Level Domain", value: d.topLevelDomain },
+                { title: "Top Level Domain", value: d?.topLevelDomain },
               ],
             };
 
             return <CardDetail key={d.name} {...detailsInfo} />;
-          })}
-        </div>
+          })} */}
+          </div>
+        )}
       </div>
     </div>
   );

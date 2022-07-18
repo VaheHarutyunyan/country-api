@@ -1,4 +1,4 @@
-import { SET_COUNTRY, SET_ERROR, SET_LOADING } from "./details-action";
+import {SET_COUNTRY, SET_ERROR, SET_LOADING} from "./details-action";
 
 const initialState = {
   currentCountry: null,
@@ -6,7 +6,7 @@ const initialState = {
   error: null,
 };
 
-export const detailsRegionReducer = (state = initialState, { type, payload }) => {
+export const detailsRegionReducer = (state = initialState, {type, payload}) => {
   switch (type) {
     case SET_LOADING:
       return {
@@ -21,6 +21,7 @@ export const detailsRegionReducer = (state = initialState, { type, payload }) =>
         status: "rejected",
       };
     case SET_COUNTRY:
+      console.log(payload);
       return {
         ...state,
         status: "received",
