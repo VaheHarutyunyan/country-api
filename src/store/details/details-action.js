@@ -1,27 +1,47 @@
 export const SET_LOADING = "@@details/SET_LOADING";
 export const SET_ERROR = "@@details/SET_ERROR";
 export const SET_COUNTRY = "@@details/SET_COUNTRY";
+export const CLEAR_DETAIL = "@@details/CLEAR_DETAIL`";
+export const SET_NEIGHBORS = "@@details/SET_NEIGHBORS`";
 
 export const setLoading = () => ({
   type: SET_LOADING,
 });
 
-export const setError = error => ({
+export const setError = (error) => ({
   type: SET_ERROR,
   payload: error,
 });
 
-export const setCountry = country => ({
+export const setCountry = (country) => ({
   type: SET_COUNTRY,
   payload: country,
 });
 
+export const setClearDetail = () => ({
+  type: CLEAR_DETAIL,
+});
+
+export const setNeighbors = (countries) => ({
+  type: SET_NEIGHBORS,
+  payload: countries,
+});
+
 export const loadCountryByName =
-  name =>
-  (dispatch, _, {client, api}) => {
+  (name) =>
+  (dispatch, _, { client, api }) => {
     dispatch(setLoading());
     client
       .get(api.searchByCountry(name))
-      .then(({data}) => dispatch(setCountry(data[0])))
-      .catch(error => dispatch(setError(error.message)));
+      .then(({ data }) => dispatch(setCountry(data[0])))
+      .catch((error) => dispatch(setError(error.message)));
+  };
+
+export const loadNeighborsCountries =
+  (borders) =>
+  (dispatch, _, { client, api }) => {
+    client
+      .get(api.filterByCode(borders))
+      .then(({ data }) => dispatch(setNeighbors(data.map((c) => c.name))))
+      .catch(console.error);
   };

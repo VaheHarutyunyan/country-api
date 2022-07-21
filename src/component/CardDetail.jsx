@@ -1,4 +1,5 @@
 import React from "react";
+import CardNeighbors from "./CardNeighbors";
 
 function CardDetail({
   name,
@@ -10,6 +11,7 @@ function CardDetail({
   capital,
   currencies,
   topLevelDomain,
+  borders,
 }) {
   return (
     <div className="country-detail">
@@ -23,7 +25,7 @@ function CardDetail({
       </div>
       <div className="country-detail-row">
         <div className="country-detail-col">
-          <b>Population</b>: <span>{population}</span>
+          <b>Population</b>: <span>{population.toLocaleString()}</span>
         </div>
         <div className="country-detail-col">
           <b>Region</b>: <span>{region}</span>
@@ -40,6 +42,9 @@ function CardDetail({
         <div className="country-detail-col">
           <b>Currencies</b>: <span>{currencies[0]?.name}</span>
         </div>
+      </div>
+      <div>
+        <CardNeighbors borders={borders} />
       </div>
     </div>
   );

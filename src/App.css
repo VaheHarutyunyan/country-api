@@ -28,6 +28,10 @@
   background: var(--background-color);
   color: var(--text-color);
 }
+.btn-outline {
+  background: var(--background-color);
+  color: var(--text-color);
+}
 .homepage {
   margin-top: 20px;
 }
@@ -60,9 +64,23 @@
   height: 100%;
 }
 .homepage .card .card-body {
-  border-top: 1px solid black;
+  border-top: 1px solid var(--border-color);
 }
 .homepage .card .card-body ul {
   list-style: none;
   padding-left: 0;
+}
+.border-country-card {
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: 1px solid var(--border-color);
+}
+.border-country-card h4 {
+  margin: 0;
+}
+.border-country-list {
+  padding-top: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }

@@ -20,7 +20,6 @@ const HomePage = () => {
     getVisibleCountries(state, { search, region })
   );
   const { status, error, qty } = useSelector(getCountries);
-  console.log(search);
 
   useEffect(() => {
     if (!qty) {

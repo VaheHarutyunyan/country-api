@@ -21,7 +21,6 @@ const SelectRegion = () => {
   const handleSelect = (region) => {
     dispatch(setRegion(region.value || ""));
   };
-  console.log(region);
 
   return (
     <>
